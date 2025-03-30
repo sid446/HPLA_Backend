@@ -25,7 +25,7 @@ const MemberSchema= new mongoose.Schema({
     avatar:{
         url:{
             type: String,
-            required: true
+            
         },
         publicId: {
             type: String

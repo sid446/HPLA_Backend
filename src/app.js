@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import session from 'express-session';
 import MemberRoute from "./routes/member.route.js"
+import userRoutes from "./routes/user.route.js"
 
 dotenv.config();
 const app=express();
@@ -32,6 +33,7 @@ app.use(
   );
 
   app.use("/member",MemberRoute)
+  app.use("/user",userRoutes)
 
   app.use((err, req, res, next) => {
     console.error(err.stack);
