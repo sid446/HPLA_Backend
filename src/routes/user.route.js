@@ -3,7 +3,9 @@ import { registerUser,verifyUserOtp,loginUser } from "../controller/user.control
 import authMiddleware from "../middleware/auth.middleware.js";
 
 const router = express.Router();
-
+router.get("/", (req, res) => {
+    res.json({ message: "User route is working" });
+}   )
 router.post("/register", registerUser);
 router.post("/verify-otp", verifyUserOtp);
 router.post("/login", loginUser);
