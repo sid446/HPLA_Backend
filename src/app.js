@@ -5,6 +5,10 @@ import cors from 'cors';
 import session from 'express-session';
 import MemberRoute from "./routes/member.route.js"
 import userRoutes from "./routes/user.route.js"
+import galleryRoute from "./routes/gallery.route.js"
+import otherMemberRoute from "./routes/otherMember.route.js"
+import newsRoute from "./routes/news.route.js"
+import AnnualRoute from "./routes/annual.route.js"
 
 dotenv.config();
 const app=express();
@@ -34,7 +38,10 @@ app.use(
 
   app.use("/member",MemberRoute)
   app.use("/user",userRoutes)
-
+  app.use("/gallery",galleryRoute)
+  app.use("/otherMember",otherMemberRoute)
+  app.use("/news",newsRoute)
+  app.use("/annual",AnnualRoute)
   app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).json({ message: "Internal Server Error" });
