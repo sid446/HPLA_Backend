@@ -42,6 +42,9 @@ app.use(
   app.use("/otherMember",otherMemberRoute)
   app.use("/news",newsRoute)
   app.use("/annual",AnnualRoute)
+  app.use("/",(req,res)=>{
+    res.json({message:"Welcome to the API"})
+  })
   app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).json({ message: "Internal Server Error" });
