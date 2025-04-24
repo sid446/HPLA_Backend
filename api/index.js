@@ -1,20 +1,20 @@
 import dotenv from 'dotenv';
 import connectDB from './db/index.js';
-import {app} from './app.js';
+import { app } from './app.js';
+import serverless from 'serverless-http';
 
-dotenv.config(
-    {
-        path: "./.env"
-    }
-);
+dotenv.config({ path: './.env' });
 
-connectDB()
-.then(() => {
-    app.listen(process.env.PORT, () => {
-        console.log(`Server running on port ${process.env.PORT}`);
-    });
-})
-.catch((error) => {
-    console.error(`Error: ${error.message}`);
-    process.exit(1);
-});
+let isConnected = false;
+
+const handler = async (req, res) => {
+  if (!isConnected) {
+    await connectDB();
+    isConnected = true;
+  }
+
+  const serverlessHandler = serverless(app);
+  return serverlessHandler(req, res);
+};
+
+export default handler;
