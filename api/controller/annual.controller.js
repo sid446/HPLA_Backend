@@ -1,9 +1,9 @@
 import { AnnualReport } from '../model/annualreport.model.js';
-import { asyncHandler } from '../utils/AsyncHandler.js';
+import { AsyncHandler } from '../utils/AsyncHandler.js';
 import { ApiError } from '../utils/ApiError.js';
 import { ApiResponse } from '../utils/ApiResponse.js';
 
-const createAnnualReport =  asyncHandler(async (req, res) => {
+const createAnnualReport =  AsyncHandler(async (req, res) => {
     const {title,link}=req.body
     console.log(req.body)
     if (!title || !link) {
@@ -22,14 +22,14 @@ const createAnnualReport =  asyncHandler(async (req, res) => {
     }
     return res.status(201).json(new ApiResponse(200, annualReport, "Annual report saved successfully"));
 })
-const getAnnualReport = asyncHandler(async (req, res) => {
+const getAnnualReport = AsyncHandler(async (req, res) => {
     const annualReports = await AnnualReport.find();
     if (!annualReports) {
         throw new ApiError(404, "No annual reports exist");
     }
     res.status(200).json(new ApiResponse(200, annualReports, "Successfully fetched annual reports"));
 })
-const deleteAnnualReport = asyncHandler(async (req, res) => {
+const deleteAnnualReport = AsyncHandler(async (req, res) => {
     const { id } = req.body;
     if (!id) {
         throw new ApiError(400, "Annual report ID is required");
@@ -40,7 +40,7 @@ const deleteAnnualReport = asyncHandler(async (req, res) => {
     }
     res.status(200).json(new ApiResponse(200, null, "Annual report deleted successfully")); 
 })
-const editAnnualReport=asyncHandler(async(req,res)=>{
+const editAnnualReport=AsyncHandler(async(req,res)=>{
     const { id, title, link } = req.body;
    if(!id || !title || !link) {
         throw new ApiError(400, "All fields are required");

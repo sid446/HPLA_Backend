@@ -1,10 +1,10 @@
 import { News } from "../model/news.model.js";
-import { asyncHandler } from "../utils/AsyncHandler.js";
+import { AsyncHandler } from "../utils/AsyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
-const saveNews = asyncHandler(async (req, res) => {
+const saveNews = AsyncHandler(async (req, res) => {
     const { title, category, content } = req.body;
 
     if (!title || !category || !content) {
@@ -48,7 +48,7 @@ const saveNews = asyncHandler(async (req, res) => {
     return res.status(201).json(new ApiResponse(200, news, "News saved successfully"));
 });
 
-const getNews =asyncHandler(async(req,res)=>{
+const getNews =AsyncHandler(async(req,res)=>{
     const news= await News.find()
     if(!news){
         throw new ApiError(404,"no news exist")
@@ -57,7 +57,7 @@ const getNews =asyncHandler(async(req,res)=>{
     .status(201)
     .json(new ApiResponse(200,news,"successfully fetched news"))
 })
-const deleteNews=asyncHandler(async(req,res)=>{
+const deleteNews=AsyncHandler(async(req,res)=>{
     const { id } = req.body;
     if (!id) {
         throw new ApiError(400, "News ID is required");

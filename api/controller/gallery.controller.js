@@ -1,11 +1,15 @@
-import { asyncHandler } from "../utils/AsyncHandler.js";
+import { AsyncHandler } from "../utils/AsyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { Gallery } from "../model/gallery.model.js";
+
+
+
+
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { deleteFromCloudinary } from "../utils/cloudinary.js"; // Import delete function
 
-const SavePhoto = asyncHandler(async (req, res) => {
+const SavePhoto = AsyncHandler(async (req, res) => {
   const { description, category } = req.body;
   const photoLocalPath = req.file?.path;
   
@@ -40,14 +44,14 @@ const SavePhoto = asyncHandler(async (req, res) => {
     .json(new ApiResponse(201, gallery, "Photo uploaded successfully"));
 });
 
-const getPhoto = asyncHandler(async (req, res) => {
+const getPhoto = AsyncHandler(async (req, res) => {
   const photos = await Gallery.find();
   return res
     .status(200)
     .json(new ApiResponse(200, photos, "Photos fetched successfully"));
 });
 
-const deletePhoto = asyncHandler(async (req, res) => {
+const deletePhoto = AsyncHandler(async (req, res) => {
   console.log('Request body:', req.body); // Log entire body
  
   

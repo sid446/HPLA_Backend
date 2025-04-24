@@ -1,10 +1,10 @@
 import { Member } from "../model/member.model.js";
 import { deleteFromCloudinary,uploadOnCloudinary } from "../utils/cloudinary.js";
-import { asyncHandler } from "../utils/AsyncHandler.js";
+import { AsyncHandler } from "../utils/AsyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 
-const saveMember = asyncHandler(async (req, res) => {
+const saveMember = AsyncHandler(async (req, res) => {
     const { category, post, name, about, phoneNumber, email } = req.body;
 
     if (!category || !name || !about) {
@@ -51,7 +51,7 @@ const saveMember = asyncHandler(async (req, res) => {
 });
 
 
-const updateMember = asyncHandler(async (req, res) => {
+const updateMember = AsyncHandler(async (req, res) => {
     console.log("Received Headers:", req.headers);
     console.log("Received Body:", req.body);
     console.log("Received File:", req.file);
@@ -86,7 +86,7 @@ const updateMember = asyncHandler(async (req, res) => {
 
     res.status(200).json(new ApiResponse(200, updatedMember, "Member updated successfully"));
 });
-const getAllMembers = asyncHandler(async (req, res) => {
+const getAllMembers = AsyncHandler(async (req, res) => {
     const members = await Member.find();
 
     if (!members || members.length === 0) {

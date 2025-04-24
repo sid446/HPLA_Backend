@@ -1,9 +1,9 @@
 import { OtherMember } from "../model/other.model.js";
-import { asyncHandler } from "../utils/AsyncHandler.js";
+import { AsyncHandler } from "../utils/AsyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 
-const SaveOtherMember=asyncHandler(async(req,res)=>{
+const SaveOtherMember=AsyncHandler(async(req,res)=>{
     const {name,designation,affiliation,mobile,memberShipNumber,type}=req.body
 
     if (!name || !designation || !affiliation || !mobile || !memberShipNumber || !type) {
@@ -34,7 +34,7 @@ const SaveOtherMember=asyncHandler(async(req,res)=>{
 
     return res.status(201).json(new ApiResponse(200,otherMember, "Member saved successfully"));
 })
-const UpdateOtherMember = asyncHandler(async (req, res) => {
+const UpdateOtherMember = AsyncHandler(async (req, res) => {
     
     const { id, name, designation, affiliation, mobile, memberShipNumber,type } = req.body;
 
@@ -85,7 +85,7 @@ const UpdateOtherMember = asyncHandler(async (req, res) => {
         new ApiResponse(200, updatedMember, "Member updated successfully")
     );
 });
-const getAllOtherMembers = asyncHandler(async (req, res) => {
+const getAllOtherMembers = AsyncHandler(async (req, res) => {
     const members = await OtherMember.find();
 
     if (!members || members.length === 0) {
@@ -94,7 +94,7 @@ const getAllOtherMembers = asyncHandler(async (req, res) => {
 
     res.status(200).json(new ApiResponse(200, members, "Members retrieved successfully"));
 });
-const deleteOtherMember = asyncHandler(async (req, res) => {
+const deleteOtherMember = AsyncHandler(async (req, res) => {
     const { id } = req.params;
 
     if (!id) {
