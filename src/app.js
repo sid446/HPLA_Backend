@@ -36,13 +36,13 @@ app.use(
     })
   );
 
-  app.use("/member",MemberRoute)
-  app.use("/user",userRoutes)
-  app.use("/gallery",galleryRoute)
-  app.use("/otherMember",otherMemberRoute)
-  app.use("/news",newsRoute)
-  app.use("/annual",AnnualRoute)
-  app.use("/",(req,res)=>{
+  app.use("/api/member",MemberRoute)
+  app.use("/api/user",userRoutes)
+  app.use("/api/gallery",galleryRoute)
+  app.use("/api/otherMember",otherMemberRoute)
+  app.use("/api/news",newsRoute)
+  app.use("/api/annual",AnnualRoute)
+  app.use("/api",(req,res)=>{
     res.json({message:"Welcome to the API"})
   })
   app.use((err, req, res, next) => {
