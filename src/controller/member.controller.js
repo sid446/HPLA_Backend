@@ -56,9 +56,7 @@ const saveMember = AsyncHandler(async (req, res) => {
 });
 
 const updateMember = AsyncHandler(async (req, res) => {
-  console.log("Received Headers:", req.headers);
-  console.log("Received Body:", req.body);
-  console.log("Received File:", req.file);
+ 
 
   const { _id, category, post, name, about, phoneNumber, email } = req.body;
   if (!_id) {

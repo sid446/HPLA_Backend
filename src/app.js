@@ -9,7 +9,7 @@ import galleryRoute from "./routes/gallery.route.js"
 import otherMemberRoute from "./routes/otherMember.route.js"
 import newsRoute from "./routes/news.route.js"
 import AnnualRoute from "./routes/annual.route.js"
-
+import NoticeRoute from "./routes/notice.route.js"
 dotenv.config();
 const app=express();
 const corsOptions = {
@@ -42,6 +42,8 @@ app.use(
   app.use("/api/otherMember",otherMemberRoute)
   app.use("/api/news",newsRoute)
   app.use("/api/annual",AnnualRoute)
+  app.use("/api/notice",NoticeRoute)
+  
   app.use("/api",(req,res)=>{
     res.json({message:"Welcome to the API"})
   })

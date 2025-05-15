@@ -10,7 +10,6 @@ const saveNews = AsyncHandler(async (req, res) => {
   if (!title || !category || !content) {
     throw new ApiError(400, "All fields are required");
   }
-
   const existedNews = await News.findOne({ title });
   if (existedNews) {
     throw new ApiError(409, "News with this title already exists");
