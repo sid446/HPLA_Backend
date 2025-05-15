@@ -10,6 +10,7 @@ import otherMemberRoute from "./routes/otherMember.route.js"
 import newsRoute from "./routes/news.route.js"
 import AnnualRoute from "./routes/annual.route.js"
 import NoticeRoute from "./routes/notice.route.js"
+import morgan from 'morgan';
 dotenv.config();
 const app=express();
 const corsOptions = {
@@ -17,7 +18,7 @@ const corsOptions = {
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
 };
-
+app.use(morgan('dev'));
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
